@@ -1,0 +1,12 @@
+prometheus:
+  url: http://localhost:9090
+  queries:
+    health:
+      query: up
+      interval: 1000
+    kube_node_info:
+      query: kube_node_info
+      interval: 5000
+    ready_nodes:
+      query: kube_node_status_condition{condition="Ready",status="true"}
+      interval: 5000
