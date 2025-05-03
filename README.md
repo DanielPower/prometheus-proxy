@@ -69,22 +69,6 @@ To build and run with Docker:
 # Build the Docker image
 docker build -t prometheus-proxy .
 
-# Create a config file
-cat > config.yaml << EOF
-prometheus:
-  url: http://prometheus:9090
-  query: kube_node_info
-EOF
-
 # Run the container with your config file mounted
 docker run -p 8080:8080 -v $(pwd)/config.yaml:/etc/prometheus-proxy/config.yaml prometheus-proxy
-```
-
-You can mount your configuration file to any location inside the container and specify the path using the `CONFIG_PATH` environment variable:
-
-```bash
-docker run -p 8080:8080 \
-  -v $(pwd)/config.yaml:/config/my-config.yaml \
-  -e CONFIG_PATH=/config/my-config.yaml \
-  prometheus-proxy
 ```
